@@ -46,34 +46,34 @@ DEFAULT_GESTURE_MAP: dict[str, dict[str, Any]] = {
         "action": "stand",        # sit → stand up
         "label": "🪑 Sit",
     },
-    "DOWN": {
-        "type": "motion",
-        "action": "stop",          # safe — zero velocity (was damping/estop)
-        "label": "⬇️ Down",
-    },
     "STOP": {
         "type": "motion",
-        "action": "stop",         # stop sign / open palm → halt
+        "action": "stop",         # zero velocity — safe halt
         "label": "🛑 Stop",
     },
     "WALK": {
         "type": "cmd_vel",
-        "params": {"linear": 0.3, "angular": 0.0},
+        "params": {"linear": 0.5, "angular": 0.0},
         "label": "🚶 Walk",
+    },
+    "RUN": {
+        "type": "cmd_vel",
+        "params": {"linear": 1.0, "angular": 0.0},
+        "label": "🏃 Run",
     },
     "LEFT": {
         "type": "cmd_vel",
-        "params": {"linear": 0.0, "angular": 0.5},
+        "params": {"linear": 0.0, "angular": 2.0},
         "label": "⬅️ Left",
     },
     "RIGHT": {
         "type": "cmd_vel",
-        "params": {"linear": 0.0, "angular": -0.5},
+        "params": {"linear": 0.0, "angular": -2.0},
         "label": "➡️ Right",
     },
     "BACK": {
         "type": "cmd_vel",
-        "params": {"linear": -0.3, "angular": 0.0},
+        "params": {"linear": -0.5, "angular": 0.0},
         "label": "🔙 Back",
     },
 }

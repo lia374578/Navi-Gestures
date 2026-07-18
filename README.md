@@ -118,12 +118,12 @@ When the model predicts a gesture, this is what happens:
 | Gesture | Robot Action | Details |
 |---------|-------------|---------|
 | **SIT**  | `stand()` | Stand up (toggles sit/stand on the dog) |
-| **WALK** | `cmd_vel(0.3, 0.0)` | Walk forward at 0.3 m/s |
+| **WALK** | `cmd_vel(0.5, 0.0)` | Walk forward at 0.5 m/s |
 | **STOP** | `stop()` | Zero velocity — safe halt |
-| **LEFT** | `cmd_vel(0.0, 0.5)` | Turn left |
-| **RIGHT**| `cmd_vel(0.0, -0.5)` | Turn right |
-| **BACK** | `cmd_vel(-0.3, 0.0)` | Walk backward |
-| **DOWN** | `stop()` | Safe stop (not estop/damping) |
+| **LEFT** | `cmd_vel(0.0, 2.0)` | Turn left |
+| **RIGHT**| `cmd_vel(0.0, -2.0)` | Turn right |
+| **BACK** | `cmd_vel(-0.5, 0.0)` | Walk backward |
+| **RUN** | `cmd_vel(1.0, 0.0)` | Walk forward at 1.0 m/s |
 
 **Safety:** The `damping` (estop) command is intentionally **not mapped** to any gesture to prevent accidental drops. If you need an emergency stop, use a separate safety mechanism.
 
