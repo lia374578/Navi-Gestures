@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "navi-gestures"
+version = "1.0.0"
+description = "Train Navi the robot dog with hand gestures — MediaPipe + scikit-learn + ff_sdk"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Navi Gestures Contributors" }]
+
+dependencies = [
+    "opencv-python>=4.8",
+    "mediapipe>=0.10",
+    "scikit-learn>=1.3",
+    "pandas>=2.0",
+    "requests>=2.31",
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+navi = [
+    "ff-sdk @ file:///${PROJECT_ROOT}/ff_sdk",
+]
+
+[project.scripts]
+navi-gestures = "gesture_control.main:main"
+
+[tool.setuptools.packages.find]
+include = ["gesture_control*"]
+
+[tool.setuptools.package-data]
+gesture_control = ["py.typed"]
