@@ -233,3 +233,14 @@ python main.py collect --label SIT --samples 50   # ✊ fist
 python main.py collect --label WALK --samples 50  # 🖐️ open palm
 python main.py train
 ```
+
+---
+
+## Third-Party Licenses
+
+This repository uses the following open-source software:
+
+- **MediaPipe** (https://github.com/google-ai-edge/mediapipe)
+  - Copyright: Copyright 2019 - Present The MediaPipe Authors
+  - License: Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+

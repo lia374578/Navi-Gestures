@@ -16,6 +16,7 @@ import argparse
 import asyncio
 import logging
 import pickle
+import signal
 import time
 from pathlib import Path
 from typing import Any
@@ -120,6 +121,9 @@ class GestureController:
         self._running = False
         self._last_cmd_vel_time: float = 0.0
 
+        # Handle Ctrl+C gracefully — important for real robot control
+        signal.signal(signal.SIGINT, self._signal_handler)
+
     def load_model(self) -> None:
         """Load the trained pickle model."""
         if not self.model_path.exists():
@@ -131,6 +135,12 @@ class GestureController:
             self._model = pickle.load(f)
         self._classes = list(self._model.classes_)
         log.info("Loaded model with %d classes: %s", len(self._classes), self._classes)
+
+    def _signal_handler(self, sig: int, frame: object) -> None:
+        """Handle Ctrl+C — set flag so the main loop can exit cleanly."""
+        log.info("Ctrl+C received — shutting down...")
+        self._running = False
+        cv2.destroyAllWindows()
 
     async def _connect_navi(self) -> None:
         """Connect to the Navi robot dog via ff_sdk."""
@@ -295,13 +305,19 @@ class GestureController:
                 cv2.imshow("Navi Gesture Controller", frame)
 
                 key = cv2.waitKey(1) & 0xFF
-                if key == ord("q"):
+                if key == ord("q") or key == 27:  # q or ESC
+                    break
+                if not self._running:  # Ctrl+C was pressed
                     break
 
         finally:
             cap.release()
             cv2.destroyAllWindows()
-            self._landmarker.close()
+            try:
+                self._landmarker.close()
+            except Exception:
+                pass
+            self._landmarker = None
             await self._disconnect()
 
     async def _disconnect(self) -> None:

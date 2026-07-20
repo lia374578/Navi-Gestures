@@ -186,7 +186,11 @@ class DataCollector:
         finally:
             cap.release()
             cv2.destroyAllWindows()
-            self._landmarker.close()
+            try:
+                self._landmarker.close()
+            except Exception:
+                pass  # macOS cleanup race — safe to ignore
+            self._landmarker = None  # prevents __del__ conflict during shutdown
 
         # Append collected samples to CSV
         if self._samples:
