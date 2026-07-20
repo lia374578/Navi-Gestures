@@ -241,6 +241,6 @@ python main.py train
 This repository uses the following open-source software:
 
 - **MediaPipe** (https://github.com/google-ai-edge/mediapipe)
-  - Copyright: Copyright 2019 - Present The MediaPipe Authors
+  - Copyright: Copyright 2019 The MediaPipe Authors
   - License: Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
