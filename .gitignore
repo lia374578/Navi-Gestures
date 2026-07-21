@@ -5,3 +5,4 @@ ff_sdk/
 .reasonix/
 __pycache__/
 gestures.csv
+.gradio/

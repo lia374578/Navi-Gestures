@@ -236,6 +236,27 @@ python main.py train
 
 ---
 
+## GUI App (Browser Interface)
+
+For a friendlier experience (no terminal commands needed), use the Gradio-based GUI:
+
+```bash
+source .venv/bin/activate
+python app.py
+```
+
+This opens a web browser with three tabs:
+
+| Tab | What it does |
+|-----|-------------|
+| **📸 Collect Gesture Data** | Select a gesture name, set sample count, and click **Start** — an OpenCV camera window opens; press **SPACE** to record, **Q** to quit |
+| **🧠 Train Model** | Pick KNN or Random Forest and click **Start Training** — accuracy and class breakdown are shown in the UI |
+| **🎮 Live Control** | Set confidence threshold, keep **Dry run** checked (unless you have the robot), and click **Start** — live skeleton + predictions in a camera window |
+
+The GUI calls the same `main.py` commands under the hood — no change to how the data or model works. A status footer at the bottom of the page shows your current `gestures.csv` and `gesture_model.pkl` state.
+
+---
+
 ## Third-Party Licenses
 
 This repository uses the following open-source software:
@@ -243,4 +264,8 @@ This repository uses the following open-source software:
 - **MediaPipe** (https://github.com/google-ai-edge/mediapipe)
   - Copyright: Copyright 2019 The MediaPipe Authors
   - License: Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+
+- **Gradio** (https://github.com/gradio-app/gradio)
+  - Copyright: Copyright 2024 Gradio, Inc.
+  - License: Apache License 2.0 (https://github.com/gradio-app/gradio/blob/main/LICENSE)
 
